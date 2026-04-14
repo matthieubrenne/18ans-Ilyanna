@@ -636,10 +636,116 @@ section {
   align-items: center;
 }
 
-/* Photo placeholder */
+/* ── Diaporama photos ── */
 .invitation-visual {
   display: flex;
   justify-content: center;
+}
+
+.slideshow {
+  position: relative;
+  width: 100%;
+  max-width: 360px;
+  aspect-ratio: 3 / 4;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  border: 1px solid var(--border-mid);
+  box-shadow: 0 8px 50px rgba(0,0,0,0.5);
+  background: var(--card);
+}
+
+.slideshow-track {
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+
+.slide {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transition: opacity 0.7s var(--ease);
+}
+
+.slide.active {
+  opacity: 1;
+  z-index: 1;
+}
+
+.slide img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  object-position: top;
+}
+
+/* Flèches */
+.slide-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 10;
+  background: rgba(8, 8, 8, 0.65);
+  border: 1px solid var(--border-mid);
+  color: var(--gold);
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  font-size: 1.4rem;
+  line-height: 1;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background var(--dur) var(--ease),
+              border-color var(--dur) var(--ease),
+              opacity var(--dur) var(--ease);
+  opacity: 0;
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+}
+
+.slideshow:hover .slide-arrow,
+.slideshow:focus-within .slide-arrow {
+  opacity: 1;
+}
+
+.slide-arrow:hover {
+  background: rgba(201, 168, 76, 0.2);
+  border-color: var(--gold);
+}
+
+.slide-arrow--prev { left: 0.6rem; }
+.slide-arrow--next { right: 0.6rem; }
+
+/* Dots */
+.slide-dots {
+  position: absolute;
+  bottom: 0.9rem;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 10;
+  display: flex;
+  gap: 0.45rem;
+  align-items: center;
+}
+
+.slide-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.35);
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  transition: background var(--dur) var(--ease),
+              transform var(--dur) var(--ease);
+}
+
+.slide-dot.active {
+  background: var(--gold);
+  transform: scale(1.35);
 }
 
 .photo-placeholder {

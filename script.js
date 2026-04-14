@@ -193,6 +193,64 @@ document.querySelectorAll('.reveal-section').forEach((el) => {
 
 
 /* ────────────────────────────────────────────────────────────
+   4b. DIAPORAMA PHOTOS
+   ──────────────────────────────────────────────────────────── */
+(function initSlideshow() {
+  const slides   = document.querySelectorAll('.slide');
+  const dotsWrap = document.getElementById('slide-dots');
+  const prevBtn  = document.getElementById('slide-prev');
+  const nextBtn  = document.getElementById('slide-next');
+  if (!slides.length || !dotsWrap) return;
+
+  let current = 0;
+  let timer   = null;
+  const DELAY = 4000; // ms entre chaque photo
+
+  /* Créer les dots */
+  slides.forEach((_, i) => {
+    const dot = document.createElement('button');
+    dot.className = 'slide-dot' + (i === 0 ? ' active' : '');
+    dot.setAttribute('role', 'tab');
+    dot.setAttribute('aria-label', `Photo ${i + 1}`);
+    dot.addEventListener('click', () => goTo(i));
+    dotsWrap.appendChild(dot);
+  });
+
+  function goTo(index) {
+    slides[current].classList.remove('active');
+    dotsWrap.children[current].classList.remove('active');
+    current = (index + slides.length) % slides.length;
+    slides[current].classList.add('active');
+    dotsWrap.children[current].classList.add('active');
+    resetTimer();
+  }
+
+  function resetTimer() {
+    clearInterval(timer);
+    timer = setInterval(() => goTo(current + 1), DELAY);
+  }
+
+  prevBtn.addEventListener('click', () => goTo(current - 1));
+  nextBtn.addEventListener('click', () => goTo(current + 1));
+
+  /* Swipe tactile */
+  let touchStartX = 0;
+  const track = document.getElementById('slideshow-track');
+  if (track) {
+    track.addEventListener('touchstart', (e) => {
+      touchStartX = e.touches[0].clientX;
+    }, { passive: true });
+    track.addEventListener('touchend', (e) => {
+      const dx = e.changedTouches[0].clientX - touchStartX;
+      if (Math.abs(dx) > 40) goTo(dx < 0 ? current + 1 : current - 1);
+    }, { passive: true });
+  }
+
+  resetTimer();
+})();
+
+
+/* ────────────────────────────────────────────────────────────
    5. FORMULAIRE RSVP — envoi par SMS
    ── Remplacez le numéro ci-dessous par le bon numéro ──
    ──────────────────────────────────────────────────────────── */

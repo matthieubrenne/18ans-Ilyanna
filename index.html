@@ -150,20 +150,26 @@
 
       <div class="invitation-layout">
 
-        <!-- Photo (remplacer .photo-placeholder par <img> si besoin) -->
+        <!-- Diaporama photos -->
         <div class="invitation-visual">
-          <!--
-            POUR AJOUTER UNE PHOTO :
-            Supprimez le bloc .photo-placeholder et décommentez :
-            <img src="photo-ilyanna.jpg" alt="Ilyanna" class="invitation-photo-img" />
-          -->
-          <div class="photo-placeholder" role="img" aria-label="Emplacement photo Ilyanna">
-            <span class="photo-icon" aria-hidden="true">📸</span>
-            <p>Photo d'Ilyanna</p>
-            <p class="photo-hint">
-              Remplacez par<br>
-              <code>photo-ilyanna.jpg</code>
-            </p>
+          <div class="slideshow" id="slideshow" aria-label="Photos d'Ilyanna" role="region">
+
+            <div class="slideshow-track" id="slideshow-track">
+              <div class="slide active"><img src="photos/photo1.jpg" alt="Photo 1 d'Ilyanna" loading="lazy" /></div>
+              <div class="slide"><img src="photos/photo2.jpg" alt="Photo 2 d'Ilyanna" loading="lazy" /></div>
+              <div class="slide"><img src="photos/photo3.jpg" alt="Photo 3 d'Ilyanna" loading="lazy" /></div>
+              <div class="slide"><img src="photos/photo4.jpg" alt="Photo 4 d'Ilyanna" loading="lazy" /></div>
+              <div class="slide"><img src="photos/photo5.jpg" alt="Photo 5 d'Ilyanna" loading="lazy" /></div>
+              <div class="slide"><img src="photos/photo6.jpg" alt="Photo 6 d'Ilyanna" loading="lazy" /></div>
+            </div>
+
+            <!-- Flèches de navigation -->
+            <button class="slide-arrow slide-arrow--prev" id="slide-prev" aria-label="Photo précédente">&#8249;</button>
+            <button class="slide-arrow slide-arrow--next" id="slide-next" aria-label="Photo suivante">&#8250;</button>
+
+            <!-- Indicateurs (dots) -->
+            <div class="slide-dots" id="slide-dots" role="tablist" aria-label="Sélectionner une photo"></div>
+
           </div>
         </div>
 
