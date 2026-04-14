@@ -754,6 +754,23 @@ section {
   font-weight: 600;
 }
 
+.rsvp-instruction {
+  max-width: 560px;
+  font-size: 0.88rem;
+  color: var(--text-dim);
+  line-height: 1.75;
+  margin-bottom: 2.6rem;
+  padding: 1rem 1.4rem;
+  background: rgba(201, 168, 76, 0.05);
+  border-left: 2px solid var(--gold-dim);
+  border-radius: 0 var(--radius) var(--radius) 0;
+}
+
+.rsvp-instruction strong {
+  color: var(--cream);
+  font-weight: 600;
+}
+
 /* Formulaire */
 #rsvp-form {
   max-width: 660px;
